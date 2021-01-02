@@ -1,0 +1,38 @@
+h1 {
+    text-align: center;
+}
+h4 {
+    border-style: solid;
+    border-color: red;
+    border-width: 2px;
+    padding: 5px;
+    margin-top: 10%;
+    margin-bottom: 27%;
+}
+p {
+    margin-top: 3%;
+    margin-bottom: 7%;
+}
+#pokemonCol {
+    margin: 0 auto;
+}
+/* #loginTitle {
+    text-align: center;
+} */
+#padding1 { 
+    padding-top: 15%;
+}
+#padding2 { 
+    padding-top: 8%;
+}
+.words1 {
+    padding-top: 10%;
+    text-align: left;
+}
+.btn2 {
+    margin: 5%;
+}
+.form-group1 {
+    padding-top: 15%;
+}
+
