@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
     try {
         const pokemonRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.char}`)
         const pokeData = {
-            sprites: pokemonRes.data.sprites,
-            types: pokemonRes.data.types,
+            sprites: pokemonRes.data.sprites.front_default,
+            type: pokemonRes.data.types,
         }
 
       res.status(200).json(pokeData);
