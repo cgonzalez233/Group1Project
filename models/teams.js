@@ -11,10 +11,16 @@ Teams.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    character: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    pokemon_name: {
+      type:DataTypes.STRING,
+      allowNull: false
     },
   },
   {
@@ -22,7 +28,7 @@ Teams.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'teams',
   }
 );
 
