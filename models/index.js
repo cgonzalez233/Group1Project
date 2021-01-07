@@ -1,6 +1,5 @@
 const User = require('./User');
 const Teams = require('./Teams');
-// const Pokemon = require('./Pokemon');
 
 User.hasMany(Teams, {
   foreignKey: 'user_id',

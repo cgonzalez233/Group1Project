@@ -28,8 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-//app.use(routes);
-const { User, Teams } = require('./models');
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
