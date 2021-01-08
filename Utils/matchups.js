@@ -140,8 +140,8 @@ const pokemon = {
     types: ["ghost"]
 };
 
-const matchup = typeAdvantage(pokemon.types);
-console.log(`Weaknesses: ${matchup.weak}`);
-console.log(`Strengths: ${matchup.strong}`);
+// const matchup = typeAdvantage(pokemon.types);
+// console.log(`Weaknesses: ${matchup.weak}`);
+// console.log(`Strengths: ${matchup.strong}`);
 
 module.exports = {typeAdvantage}
