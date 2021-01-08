@@ -1,0 +1,13 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url("https://i.imgur.com/YJBuO5c.jpg");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    
+}
+html, body, pre, code, kbd, samp {
+    font-family: "Press Start 2P";
+}
