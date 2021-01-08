@@ -1,5 +1,6 @@
-const typeInfo = [
-    {
+// Pokemon types
+
+const typeInfo = [{
         type: "water",
         weak: ["electric", "grass"],
         strong: ["rock", "fire", "ground"],
@@ -108,57 +109,39 @@ const typeInfo = [
         exceptions: ["dragon"]
     }
 ];
-​
-// raw = {
-//     weak: ["electric", "grass", "water", "ice"],
-//     strong: ["rock", "fire", "ground", "steel", "poison", "electric"]
-// };
-​
-// goal = {
-//     weak: ["grass", "ice"],
-//     strong: ["rock", "fire", "ground", "steel", "poison"]
-// };
-​
+// Pokemon types
+
 const typeAdvantage = (types) => {
-    const result = { weak: [], strong: [] };
-​
-    // types = ["water", "ground"];
+    const result = {
+        weak: [],
+        strong: []
+    }
+
     const exceptions = [];
     types.forEach(type => {
         const thisType = typeInfo.filter((element) => element.type === type)[0];
-        
+
         thisType.strong.forEach((strength) => {
-            if(result.strong.indexOf(strength) < 0) result.strong.push(strength);
+            if (result.strong.indexOf(strength) < 0) result.strong.push(strength);
         });
-​
         thisType.weak.forEach((weakness) => {
-            if(types.indexOf(weakness) < 0 && result.weak.indexOf(weakness) < 0) result.weak.push(weakness);
+            if (types.indexOf(weakness) < 0 && result.weak.indexOf(weakness) < 0) result.weak.push(weakness);
         });
-​
         thisType.exceptions.forEach((exception) => {
-            if(exceptions.indexOf(exception) < 0) exceptions.push(exception);
+            if (exceptions.indexOf(exception) < 0) exceptions.push(exception);
         });
     });
-​
-    // result = {
-    //     weak: ["electric", "grass", "ice"],
-    //     strong: ["rock", "fire", "ground", "steel", "poison", "electric"]
-    // };
-​
+
     result.weak = result.weak.filter((weakness) => exceptions.indexOf(weakness) < 0);
-​
-    // result = {
-    //     weak: ["grass", "ice"],
-    //     strong: ["rock", "fire", "ground", "steel", "poison", "electric"]
-    // };
-​
+
     return result;
 };
-​
 const pokemon = {
-    types: ["ice", "psychic"]
+    types: ["ghost"]
 };
-​
+
 const matchup = typeAdvantage(pokemon.types);
 console.log(`Weaknesses: ${matchup.weak}`);
 console.log(`Strengths: ${matchup.strong}`);
+
+module.exports = {typeAdvantage}
