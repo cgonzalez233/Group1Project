@@ -27,6 +27,7 @@ User.init(
         len: [8],
       },
     },
+    team: DataTypes.STRING
   },
   {
     hooks: {
@@ -48,3 +49,4 @@ User.init(
 );
 
 module.exports = User;
+
