@@ -19,6 +19,10 @@ router.get("/team", (req, res) => {
     res.render("team");
 });
 
+router.get("/signup", (req, res) => {
+    res.render("signup");
+});
+
 // router.get("/new", withAuth, (req, res) => {
 //   res.render("newPost", {
 //     layout: "dashboard",
