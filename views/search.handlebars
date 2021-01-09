@@ -1,27 +1,25 @@
 {{!-- <title>Pokemon Team Builder - Search</title> --}}
-<div class="wallpaper">
-    <h1>Search Individual Pokemon</h1>
+<div class="searchDiv">
+    <h2 id="searchTitle">Search for a Pokemon</h2>
     <div class="container-fluid">
         <div class="row" id="padding2"></div>
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-12">
                 <form>
-                    <div class="form-group">
-                        <label for="inputSearch">Enter the Pokemon's Name:</label>
-                        <input type="text" class="form-control" id="pokeSearch">
-                        <small id="pokeSearch" class="form-text text-muted">Be sure to check spelling.</small>
+                    <div class="form-group" id="textField">
+                        <textarea id="textarea_field" class="nes-textarea"></textarea>
                     </div>
-                    <button type="submit" class="btn btn2 btn-primary">Submit</button>
+                    <button type="button" class="nes-btn is-warning" id="searchSubmit">Submit</button>
                 </form>
             </div>
-            <div class="col-4"></div>
-        </div>
         <div class="row">
-            <div class="col-10" id="gameContainer" style="margin-top: 185px; margin-left: 25%;">
+            <div class="col-10" id="gameContainer">
 
             </div>
         </div>
     </div>
 </div>
 <script src="./js/search.js"></script>
+<script type="application/javascript">
+  document.body.classList.add("awesome-background");
+</script>

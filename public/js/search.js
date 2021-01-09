@@ -1,43 +1,112 @@
 $(document).ready(function(){
 
-    $(".btn").on("click", async function(e){
+    var favStorage = [];
+    
+    $(`#team`).innerHTML = localStorage.getItem("#team");
+
+    $("#searchSubmit").on("click", async function(e){
         e.preventDefault();
         console.log("Searching")
+        $('#gameContainer').empty()
 
-        const pokemonName = $("#pokeSearch").val().trim().toLowerCase();
+        
+        const pokemonName = $("#textarea_field").val().trim().toLowerCase();
         console.log(pokemonName);
 
         const res = await fetch(`/api/pokemon/${pokemonName}`);
         const info = await res.json();
         console.log(info);
-        
-        // <section class="nes-container is-dark member-card"><div class="avatar"><img data-src="https://github.com/BcRikko.png?size=80" alt="Core Member B.C.Rikko" class="" src="https://github.com/BcRikko.png?size=80"></div> <div class="profile"><h4 class="name">B.C.Rikko</h4> <p>Creator of NES.css</p> <div></div></div></section>
+     
+        // Building pokemon info
         const pokemonCard = $(`<div class="nes-container member-card" style="width: max-content;
         border: none;">`)
-        const avatarDiv = $(`<div class="avatar">`)
-        const spriteImage = $(`<img width="200" height="200" src=${info.sprites} alt=${pokemonName}>`)
-        const profileDiv = $(`<div class="profile">`)
+        pokemonCard.attr("id", "pokemonCard")
 
-        profileDiv.append($("<p> Strong Against: </p>"))
+        const avatarDiv = $(`<div class="avatar">`)
+        avatarDiv.attr("id", "avatarDiv")
+
+        const spriteImage = $(`<img width="200" height="200" src=${info.sprites} alt=${pokemonName}>`)
+        spriteImage.attr("id", "spriteImage")
+
+        const firstType = $(`<h2>`)
+        firstType.text(`${info.type}`.charAt(0).toUpperCase() + `${info.type}`.substr(1).toLowerCase())
+        firstType.attr("id", "firstType")
+
+        const profileDiv = $(`<div class="profile">`)
+        profileDiv.attr("id", "profileDiv")
+
+        const favDiv = $("<div>")
+        favDiv.attr("id", "favDiv")
+
+        // const favBtn = $(`<i>`)
+        // favBtn.addClass("nes-icon is-large heart")
+        // favBtn.attr("id", "favBtn")
+
+        const effectiveDiv = $("<div>")
+        effectiveDiv.attr("id", "effectiveDiv")
+
+        // profileDiv.append($("<p> Strong Against: </p>"))
+        const strongUl = $("<ul>")
+        strongUl.attr("id", "strongUl")
+        strongUl.append($("<p> Strong Against: </p>"))
 
         info.typeAdvantage.strong.forEach(function(val){
-            const pTag = $("<p>")
-            pTag.text(val)
-            profileDiv.append(pTag)
+            const liTag = $("<li>")
+            liTag.text(val.charAt(0).toUpperCase() + val.substr(1).toLowerCase())
+            // profileDiv.append(strongDiv)
+            effectiveDiv.append(strongUl)
+            strongUl.append(liTag)
         });
 
-        profileDiv.append($("<p> Weak Against: </p>"))
+        // profileDiv.append($("<p> Weak Against: </p>"))
+        const weakUl = $("<ul>")
+        weakUl.attr("id", "weakUl")
+        weakUl.append($("<p> Weak Against: </p>"))
+        
         info.typeAdvantage.weak.forEach(function(val){
-            const pTag = $("<p>")
-            pTag.text(val)
-            profileDiv.append(pTag)
+            const liTag = $("<li>")
+            liTag.text(val.charAt(0).toUpperCase() + val.substr(1).toLowerCase())
+            // profileDiv.append(weakDiv)
+            effectiveDiv.append(weakUl)
+            weakUl.append(liTag)
         });
     
-        avatarDiv.append(spriteImage)
-        pokemonCard.append(avatarDiv, profileDiv)
+        // avatarDiv.append(spriteImage, firstType)
+        if (info.type2){
+            const secondType = $(`<h2>`)
+            secondType.text(`${info.type2}`.charAt(0).toUpperCase() + `${info.type2}`.substr(1).toLowerCase())
+            secondType.attr("id", "secondType")
+            // avatarDiv.append(secondType)
+            pokemonCard.append(secondType)
+        }
+        // favDiv.append(favBtn)
+        // pokemonCard.append(avatarDiv, profileDiv, favDiv)
+        pokemonCard.append(avatarDiv, profileDiv, favDiv, spriteImage, firstType, effectiveDiv)
         $('#gameContainer').append(pokemonCard)
 
-        
+        // Building pokemon info
+
+        $(favBtn).on("click", async function(){
+            
+            favStorage.push(pokemonName)
+            const teamList = $(`<ul>`)
+            teamList.attr("id", "teamList")
+            const teamSprite = $(`<img width="100" height="100" src=${info.sprites} alt=${pokemonName}>`)
+            teamSprite.attr("id", "teamSprite")
+            const teamBuilder = $(`<li>`)
+            teamBuilder.text(pokemonName.charAt(0).toUpperCase() + pokemonName.substr(1).toLowerCase())
+            teamBuilder.attr("id", "teamBuilder")
+
+            $(`#team`).append(teamList)
+            teamList.append(teamSprite, teamBuilder)
+
+            localStorage.setItem('team', JSON.stringify(`#team`));
+
+            
+            console.log(favStorage)
+
+        });
+
 
     })
 })

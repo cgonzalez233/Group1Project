@@ -1,13 +1,152 @@
 
 body, html {
     height: 100%;
-    margin: 0;
-    background-image: url("https://i.imgur.com/YJBuO5c.jpg");
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
-    
+    margin: 0;  
 }
 html, body, pre, code, kbd, samp {
     font-family: "Press Start 2P";
+}
+.awesome-background{
+    background-image: url("https://i.imgur.com/3xG5WFw.jpg");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.main-background{
+    background-image: url("https://i.imgur.com/9ZOPVyp.jpg");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.nes-textarea{
+    display: flex;
+    max-width: 370px;
+    max-height: 40px;
+    margin-top: 350px;
+    margin-left: -400px;
+    margin-right: 410px;
+}
+
+.nes-field{
+    max-width: 500px;
+}
+
+.signup-form{
+    margin-top: 40px;
+}
+
+#loginDiv{
+    padding-top: 100px;
+    padding-left: 650px;
+}
+
+#homepage{
+    padding-left: 430px;
+    padding-top: 350px;
+}
+#searchBtn{
+    margin-top: 50px;
+    margin-left: 125px;
+}
+
+#loginBtn{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.searchDiv{
+    display: flex;
+}
+
+#searchTitle{
+    padding-top: 300px;
+    padding-left: 20px;
+    font-size: 21.5px;
+}
+
+#searchSubmit{
+    margin-top: 20px;
+    margin-left: -300px;
+}
+
+#spriteImage{
+    margin-left: 70px;
+    margin-top: -350px;
+}
+
+#gameContainer{
+   display: flex;
+}
+
+#pokemonCard{
+    /* display: flex; */
+    margin-top: -75px;
+}
+
+/* #avatarDiv{
+    display: block;
+    margin-top: 40px;
+} */
+
+#firstType{
+    margin-left: 360px;
+    margin-top: -180px;
+    margin-bottom: 60px;
+}
+
+/* #secondType{
+    margin-left: 575px;
+    margin-top: -44px;
+} */
+
+#favBtn{
+    /* margin-top: -100px;
+    margin-left: 705px;
+    margin-bottom: 500px;
+     */
+     margin-left: -275px;
+     margin-top: -100px;
+}
+#secondType{
+    margin-left: 575px;
+    margin-top: -114px;
+    margin-bottom: 119px;
+}
+
+#strongUl{
+    margin-left: 150px;
+}
+
+#effectiveDiv{
+    display: flex;
+}
+
+#team{
+    display: flex;
+}
+
+#teamList{
+    display: flex;
+}
+
+#teamBuilder{
+    display: flex;
+}
+
+#teamSprite{
+    display: flex;
+}
+
+#logo{
+    display: flex;
+    height: 125px;
+    width: auto;
+    margin-left: 185px;
+    margin-top: 30px;
+}
+
+.is-warning{
+    margin-top: 15px;
 }
