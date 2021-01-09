@@ -1,10 +1,16 @@
 $(document).ready(function(){
 
+    var favStorage = [];
+    
+    $(`#team`).innerHTML = localStorage.getItem("#team");
+
     $(".btn").on("click", async function(e){
         e.preventDefault();
         console.log("Searching")
+        $('#gameContainer').empty()
 
-        const pokemonName = $("#pokeSearch").val().trim().toLowerCase();
+        
+        const pokemonName = $("#textarea_field").val().trim().toLowerCase();
         console.log(pokemonName);
 
         const res = await fetch(`/api/pokemon/${pokemonName}`);
@@ -16,7 +22,11 @@ $(document).ready(function(){
         border: none;">`)
         const avatarDiv = $(`<div class="avatar">`)
         const spriteImage = $(`<img width="200" height="200" src=${info.sprites} alt=${pokemonName}>`)
+        const firstType = $(`<p>`)
+        firstType.text(`${info.type}`)
         const profileDiv = $(`<div class="profile">`)
+        const favBtn = $(`<i>`)
+        favBtn.addClass("nes-icon is-large heart")
 
         profileDiv.append($("<p> Strong Against: </p>"))
 
@@ -33,11 +43,33 @@ $(document).ready(function(){
             profileDiv.append(pTag)
         });
     
-        avatarDiv.append(spriteImage)
+        avatarDiv.append(spriteImage, favBtn, firstType)
+        if (info.type2){
+            const secondType = $(`<p>`)
+            secondType.text(`${info.type2}`)
+            avatarDiv.append(secondType)
+        }
         pokemonCard.append(avatarDiv, profileDiv)
         $('#gameContainer').append(pokemonCard)
 
-        
+        $(favBtn).on("click", async function(){
+            
+            favStorage.push(pokemonName)
+            const teamList = $(`<div>`)
+            const teamSprite = $(`<img width="75" height="75" src=${info.sprites} alt=${pokemonName}>`)
+            const teamBuilder = $(`<p>`)
+            teamBuilder.text(pokemonName.charAt(0).toUpperCase() + pokemonName.substr(1).toLowerCase())
+
+            $(`#team`).append(teamList)
+            teamList.append(teamSprite, teamBuilder)
+
+            localStorage.setItem('team', JSON.stringify(`#team`));
+
+            
+            console.log(favStorage)
+
+        });
+
 
     })
 })

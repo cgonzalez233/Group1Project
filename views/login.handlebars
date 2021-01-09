@@ -1,39 +1,39 @@
-<div class="row">
-  <div class="col-md-6">
+<div class="row" id="loginDiv">
+  <div class="col-md-6" >
     <h2>Login</h2>
 
     <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">email:</label>
-        <input class="form-input" type="text" id="email-login" />
+      <div class="nes-field">
+        <label for="name_field">Username</label>
+        <input type="text" id="login-name" class="nes-input">
       </div>
-      <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
+      <div class="nes-field">
+        <label for="password_field">Password</label>
+        <input type="text" id="login-pass" class="nes-input">
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
+      <div class="nes-field">
+        <button type="button" class="nes-btn is-warning">Login</button>
       </div>
     </form>
   </div>
   <div class="col-md-6">
-    <h2>Signup</h2>
 
     <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
+      <h2>Signup</h2>
+      <div class="nes-field">
+        <label for="name_field">Username</label>
+        <input type="text" id="signup-name" class="nes-input">
       </div>
-      <div class="form-group">
-        <label for="email-signup">email:</label>
-        <input class="form-input" type="text" id="email-signup" />
+      <div class="nes-field">
+        <label for="password_field">Password</label>
+        <input type="text" id="signup-pass" class="nes-input">
       </div>
-      <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
+      <div class="nes-field">
+        <label for="password_field">Repeat Password</label>
+        <input type="text" id="signup-pass2" class="nes-input">
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
+      <div class="nes-field">
+        <button type="button" class="nes-btn is-warning">Signup</button>
       </div>
     </form>
   </div>
@@ -70,3 +70,7 @@
         <div class="col-4"></div>
     </div>
 </div> --}}
+
+<script type="application/javascript">
+  document.body.classList.add("main-background");
+</script>
