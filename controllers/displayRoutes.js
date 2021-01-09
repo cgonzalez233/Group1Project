@@ -1,10 +1,25 @@
 const router = require("express").Router();
 // const sequelize = require("../config/connection");
-// const { Post, User, Comment } = require("../models");
+const {User} = require("../models");
 // const withAuth = require("../utils/auth");
 
-router.get("/", (req, res) => {
-      res.render("home");
+router.get("/", async (req, res)=> {
+    let user;
+
+    if (req.session.logged_in){
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: {
+                exclude: ["password"]
+            }
+        })
+        user = userData.get({
+            plain: "true"
+        })
+    };
+    res.render("home", {
+        ...user,
+        logged_in: req.session.logged_in
+    });
 });
 
 router.get("/login", (req, res) => {
