@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
+console.log(req.body)
+
     const userData = await User.create(req.body);
 
     req.session.save(() => {
@@ -12,7 +14,7 @@ router.post('/register', async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 });
 
@@ -57,5 +59,34 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+router.put('/updateTeam', async (req, res) => {
+  console.log(req.body)
+  try{
+    const teamData = await User.update(req.body, {
+      where: {
+        id: req.session.user_id
+      }
+    });
+    res.status(200).json(teamData)
+  }catch(err){
+    res.status(400).json(err.message)
+  }
+})
+
+router.get('/getTeam', async (req, res) => {
+  try{
+    const teamData = await User.findByPk(req.session.user_id, {
+      attributes: ["team"]
+    }); 
+    const team = teamData.get({
+      plain: "true"
+    })
+    console.log(team)
+    res.status(200).json(team.team)
+  }catch(err){
+    res.status(400).json(err.message)
+  }
+})
 
 module.exports = router;

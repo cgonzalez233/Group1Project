@@ -1,12 +1,11 @@
-const loginFormHandler = async (event) => {
+  $("#login").on("click", async function(event){
+    console.log("click")
     event.preventDefault();
   
     // Collect values from the login form
     const username = $('#login-name').value.trim();
     const password = $('#login-pass').value.trim();
 
-$("#login").on("click", function(){
-    console.log("click")
     if (username && password) {
       // Send a POST request to the API endpoint
       const response = await fetch('/api/users/login', {
@@ -23,29 +22,27 @@ $("#login").on("click", function(){
       }
     }
     });
-  };
 
-  const signupFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const username = document.querySelector('#signup-name').value.trim();
-    const password = document.querySelector('#signup-pass').value.trim();
-    const passwordConfirm = document.querySelector('#signup-pass2').value.trim();
+    $("#signup").on("click", async function(event){
+      console.log("click")
 
-  $("#signup").on("click", function(){
-    console.log("click")
-    if (username && password && passwordConfirm) {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        body: JSON.stringify({ username, password, passwordConfirm }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+      event.preventDefault();
   
-      if (response.ok) {
-        document.location.replace('/');
-      } else {
-        alert(response.statusText);
+      const user_name = document.querySelector('#signup-name').value.trim();
+      const password = document.querySelector('#signup-pass').value.trim();
+      const passwordConfirm = document.querySelector('#signup-pass2').value.trim();
+
+      if (user_name && password && passwordConfirm) {
+        const response = await fetch('/api/users', {
+          method: 'POST',
+          body: JSON.stringify({ user_name, password}),
+          headers: { 'Content-Type': 'application/json' },
+        });
+    
+        if (response.ok) {
+          document.location.replace('/');
+        } else {
+          alert(response.statusText);
+        }
       }
-    }
-    })
-  };
+      })

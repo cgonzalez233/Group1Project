@@ -1,6 +1,29 @@
-$(document).ready(function(){
+$(document).ready(async function(){
 
-    var favStorage = [];
+    const res = await fetch(`/api/users/getTeam`);
+    const data = await res.json()
+    const favStorage = JSON.parse(data)
+    // const favStorage = []
+
+    const teamList = $(`<ul>`)
+    teamList.attr("id", "teamList")
+    favStorage.forEach((pokemon)=> {
+
+    const teamSprite = $(`<img width="100" height="100" src=${pokemon.sprite} alt=${pokemon.name}>`)
+    teamSprite.attr("id", "teamSprite")
+    const teamBuilder = $(`<li>`)
+    teamBuilder.append(teamSprite)
+    teamBuilder.append(pokemon.name.charAt(0).toUpperCase() + pokemon.name.substr(1).toLowerCase())
+    teamBuilder.attr("id", "teamBuilder")
+
+    teamList.append(teamBuilder)
+
+    });
+
+    $(`#team`).append(teamList)
+
+
+    console.log(favStorage)
     
     $(`#team`).innerHTML = localStorage.getItem("#team");
 
@@ -38,9 +61,9 @@ $(document).ready(function(){
         const favDiv = $("<div>")
         favDiv.attr("id", "favDiv")
 
-        // const favBtn = $(`<i>`)
-        // favBtn.addClass("nes-icon is-large heart")
-        // favBtn.attr("id", "favBtn")
+        const favBtn = $(`<i>`)
+        favBtn.addClass("nes-icon is-large heart")
+        favBtn.attr("id", "favBtn")
 
         const effectiveDiv = $("<div>")
         effectiveDiv.attr("id", "effectiveDiv")
@@ -81,27 +104,39 @@ $(document).ready(function(){
         }
         // favDiv.append(favBtn)
         // pokemonCard.append(avatarDiv, profileDiv, favDiv)
-        pokemonCard.append(avatarDiv, profileDiv, favDiv, spriteImage, firstType, effectiveDiv)
+        pokemonCard.append(avatarDiv, profileDiv, favDiv, spriteImage, favBtn, firstType, effectiveDiv)
         $('#gameContainer').append(pokemonCard)
 
         // Building pokemon info
 
         $(favBtn).on("click", async function(){
             
-            favStorage.push(pokemonName)
-            const teamList = $(`<ul>`)
-            teamList.attr("id", "teamList")
+            favStorage.push({
+                name: pokemonName,
+                sprite: info.sprites
+            })
+            
             const teamSprite = $(`<img width="100" height="100" src=${info.sprites} alt=${pokemonName}>`)
             teamSprite.attr("id", "teamSprite")
             const teamBuilder = $(`<li>`)
             teamBuilder.text(pokemonName.charAt(0).toUpperCase() + pokemonName.substr(1).toLowerCase())
             teamBuilder.attr("id", "teamBuilder")
 
-            $(`#team`).append(teamList)
             teamList.append(teamSprite, teamBuilder)
 
-            localStorage.setItem('team', JSON.stringify(`#team`));
-
+            // localStorage.setItem('team', JSON.stringify(favStorage));
+            
+            const response = await fetch('/api/users/updateTeam', {
+                method: 'PUT',
+                body: JSON.stringify({team: JSON.stringify(favStorage)}),
+                headers: { 'Content-Type': 'application/json' },
+              });
+          
+              if (response.ok) {
+                console.log("Saved to database!")
+              } else {
+                alert(response.statusText);
+              }
             
             console.log(favStorage)
 
