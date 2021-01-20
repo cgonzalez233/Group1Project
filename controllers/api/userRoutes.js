@@ -59,19 +59,19 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.put("/updateTeam", async (req, res) => {
-  console.log(req.body);
-  try {
-    const teamData = await User.update(req.body, {
-      where: {
-        id: req.session.user_id,
-      },
-    });
-    res.status(200).json(teamData);
-  } catch (err) {
-    res.status(400).json(err.message);
-  }
-});
+// router.put("/updateTeam", async (req, res) => {
+//   console.log(req.body);
+//   try {
+//     const teamData = await User.update(req.body, {
+//       where: {
+//         id: req.session.user_id,
+//       },
+//     });
+//     res.status(200).json(teamData);
+//   } catch (err) {
+//     res.status(400).json(err.message);
+//   }
+// });
 
 router.get("/getTeam", async (req, res) => {
   try {

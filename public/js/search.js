@@ -66,9 +66,9 @@ $(document).ready(async function () {
     const favDiv = $("<div>");
     favDiv.attr("id", "favDiv");
 
-    const favBtn = $(`<i>`);
-    favBtn.addClass("nes-icon is-large heart");
-    favBtn.attr("id", "favBtn");
+    // const favBtn = $(`<i>`);
+    // favBtn.addClass("nes-icon is-large heart");
+    // favBtn.attr("id", "favBtn");
 
     const effectiveDiv = $("<div>");
     effectiveDiv.attr("id", "effectiveDiv");
@@ -117,7 +117,7 @@ $(document).ready(async function () {
       profileDiv,
       favDiv,
       spriteImage,
-      favBtn,
+      //   favBtn,
       firstType,
       effectiveDiv
     );
@@ -125,40 +125,39 @@ $(document).ready(async function () {
 
     // Building pokemon info
 
-    $(favBtn).on("click", async function () {
-      favStorage.push({
-        name: pokemonName,
-        sprite: info.sprites,
-      });
+    // $(favBtn).on("click", async function () {
+    //   favStorage.push({
+    //     name: pokemonName,
+    //     sprite: info.sprites,
+    //   });
 
-      const teamSprite = $(
-        `<img width="100" height="100" src=${info.sprites} alt=${pokemonName}>`
-      );
-      teamSprite.attr("id", "teamSprite");
-      const teamBuilder = $(`<li>`);
-      teamBuilder.text(
-        pokemonName.charAt(0).toUpperCase() +
-          pokemonName.substr(1).toLowerCase()
-      );
-      teamBuilder.attr("id", "teamBuilder");
+    //   const teamSprite = $(
+    //     `<img width="100" height="100" src=${info.sprites} alt=${pokemonName}>`
+    //   );
+    //   teamSprite.attr("id", "teamSprite");
+    //   const teamBuilder = $(`<li>`);
+    //   teamBuilder.text(
+    //     pokemonName.charAt(0).toUpperCase() +
+    //       pokemonName.substr(1).toLowerCase()
+    //   );
+    //   teamBuilder.attr("id", "teamBuilder");
 
-      teamList.append(teamSprite, teamBuilder);
+    //   teamList.append(teamSprite, teamBuilder);
 
-      // localStorage.setItem('team', JSON.stringify(favStorage));
+    // localStorage.setItem('team', JSON.stringify(favStorage));
 
-      const response = await fetch("/api/users/updateTeam", {
-        method: "PUT",
-        body: JSON.stringify({ team: JSON.stringify(favStorage) }),
-        headers: { "Content-Type": "application/json" },
-      });
+    // const response = await fetch("/api/users/updateTeam", {
+    //   method: "PUT",
+    //   body: JSON.stringify({ team: JSON.stringify(favStorage) }),
+    //   headers: { "Content-Type": "application/json" },
+    // });
 
-      if (response.ok) {
-        console.log("Saved to database!");
-      } else {
-        alert(response.statusText);
-      }
+    // if (response.ok) {
+    //   console.log("Saved to database!");
+    // } else {
+    //   alert(response.statusText);
+    // }
 
-      console.log(favStorage);
-    });
+    // console.log(favStorage);
   });
 });
